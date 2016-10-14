@@ -1,0 +1,72 @@
+
+
+<div id="ContentContainer">
+	
+	<div id ="contentControls">
+		
+		<div class="row" data-ng-show="saveReady">
+			<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="myModalJason">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title">Json Code</h4>
+				  </div>
+				  <div class="modal-body">
+					<p>The following Json will be updated in the database in a real world app:</p>
+					<p>{{jsaonString}}</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" aria-label="Close">Close</button>
+				  </div>
+				</div>
+			  </div>
+			</div>		
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-8">
+				<div>
+					<button data-ng-show="editMode" class="btn btn-default btn-sm" data-ng-click="addContentBlock('text')">Add Text Panel</button>
+					<button data-ng-show="editMode" class="btn btn-default btn-sm" data-ng-click="addContentBlock('products')">Add Products Panel</button>
+					<button data-ng-show="viewJson" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModalJason">View Json</button>
+				</div>
+			</div>
+			<div class="col-xs-4 toggleSwitch">
+				<button class="btn btn-success btn-sm" data-ng-show="saveReady" data-ng-click="saveContent(dataIs)">Save</button>
+				Edit:
+				<toggle-switch ng-model="editMode" class="switch-small"> </toggle-switch>
+			</div>
+		</div>
+		
+	</div>
+	
+	<ul id="ContentList">
+		<li data-ng-repeat="contentItem in dataIs" data-ng-class="{editModeOn: editMode}">		
+			<div ng-switch="contentItem.type">
+
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="listCont">
+							<div class="deleteCont">
+								<button type="button" class="btn btn-default btn-sm " data-ng-show="editMode" data-ng-click="DeleteContentBlock(contentItem.id)">x</button>
+							</div>
+
+							<div ng-switch-when="text">
+								<text-component id="contentItem.id" title="contentItem.title" body="contentItem.body" edit="editMode"></text-component>
+							</div>
+							
+							<div ng-switch-when="products">
+								<products-component id="contentItem.id" products="contentItem.products" productsinfo="productsIs" edit="editMode"></products-component>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				
+			</div>	
+		</li>
+	</ul>
+		
+</div>
+
+

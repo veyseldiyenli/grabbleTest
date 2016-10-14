@@ -1,0 +1,70 @@
+<!--Product editor model-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="productModal{{id}}">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	  <h4 class="modal-title">Products editor</h4>
+	  </div>
+	  <div class="modal-body">
+	
+		<div class="row">
+			<div class="col-xs-8">
+				<h5>Products Added:</h5>
+
+			<ul class="productsList row">
+				<li class="col-xs-6" data-ng-repeat="products in displayarray">
+					<button data-ng-click="removeProduct(products.id)">
+						<img class="img-responsive" src="{{products.image}}" alt="{{products.title}}" title="{{products.title}}">
+					</button>
+					<div><strong>{{products.retailer}}</strong></div>
+					<div>{{products.price}}</div>
+				</li>
+			</ul>
+
+			</div>
+			<div class="col-xs-4">
+				<h5>Products Lists:</h5>
+				<div class="productsListCont">
+					<ul class="productsList">
+						<li data-ng-repeat="products in productsinfo">
+						
+							<button data-ng-click="addProduct(products.id)">
+								<img class="img-responsive" src="{{products.image}}" alt="{{products.title}}" title="{{products.title}}">
+							</button>
+							
+							<div><strong>{{products.retailer}}</strong></div>
+							<div>{{products.price}}</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		 
+	  </div>
+	  <div class="modal-footer">
+			<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" aria-label="Close">Update</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<div class="rows">
+	<div class="col-xs-12">
+		<div class="contentArea">
+			<h2 data-ng-show="edit">Featured Products</h2>
+
+			<ul class="productsList row">
+				<li class="col-xs-6" data-ng-repeat="products in displayarray">
+					<img class="img-responsive" src="{{products.image}}" alt="{{products.title}}" title="{{products.title}}">
+					<div><strong>{{products.retailer}}</strong></div>
+					<div>{{products.price}}</div>
+				</li>
+			</ul>			
+			
+		</div>
+		
+		<div class="contentControls" data-ng-show="edit">
+			<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#productModal{{id}}">Edit Products</button>
+		</div> 
+	</div>	
+</div>
